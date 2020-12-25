@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../components/default_button.dart';
 import '../../../constants.dart';
 import '../../../size_config.dart';
+import '../../sign_in/sign_in_screen.dart';
 import '../components/splash_content.dart';
 
 class Body extends StatefulWidget {
@@ -60,6 +61,7 @@ class _BodyState extends State<Body> {
                   children: [
                     Spacer(),
                     Row(
+                      // DOTS below pictures
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: List.generate(
                         splashData.length,
@@ -71,7 +73,9 @@ class _BodyState extends State<Body> {
                     ),
                     DefaultButton(
                       text: "Continue",
-                      press: () {},
+                      press: () {
+                        Navigator.pushNamed(context, SignInScreen.routeName);
+                      },
                     ),
                     Spacer(),
                   ],
