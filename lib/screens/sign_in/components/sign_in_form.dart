@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shopping_app/screens/login_success/login_success_screen.dart';
 
 import '../../../screens/forgot_password/forgot_password_screen.dart';
 import '../../../constants.dart';
@@ -46,7 +47,7 @@ class _SignInFormState extends State<SignInForm> {
               Text("Remember me"),
               Spacer(),
               GestureDetector(
-                onTap: () => Navigator.popAndPushNamed(
+                onTap: () => Navigator.pushNamed(
                     context, ForgotPasswordScreen.routeName),
                 child: Text(
                   "Forgot password",
@@ -59,8 +60,13 @@ class _SignInFormState extends State<SignInForm> {
           DefaultButton(
             text: "Continue",
             press: () {
+              // TODO: form is not validation after pressing continue two times in a row without filling out textfields with text
+
               if (_formKey.currentState.validate()) {
                 _formKey.currentState.save();
+
+                // if all are valid, then go to the success screen
+                Navigator.pushNamed(context, LoginSuccessScreen.routeName);
               }
             },
           ),
@@ -92,11 +98,13 @@ class _SignInFormState extends State<SignInForm> {
           setState(() {
             errors.add(kPassNullError);
           });
+          return "";
         } else if (value.length < 8 && !errors.contains(kShortPassError)) {
           // if regex doesn't match with a valid email, add to error's list
           setState(() {
             errors.add(kShortPassError);
           });
+          return "";
         }
 
         return null;
@@ -136,12 +144,14 @@ class _SignInFormState extends State<SignInForm> {
           setState(() {
             errors.add(kEmailNullError);
           });
+          return "";
         } else if (!emailValidatorRegExp.hasMatch(value) &&
             !errors.contains(kInvalidEmailError)) {
           // if regex doesn't match with a valid email, add to error's list
           setState(() {
             errors.add(kInvalidEmailError);
           });
+          return "";
         }
 
         return null;

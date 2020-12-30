@@ -112,7 +112,7 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
             text: "Continue",
             press: () {
               if (_formKey.currentState.validate()) {
-                // do something
+                // do something to start password recovery / reset
               }
             },
           ),
