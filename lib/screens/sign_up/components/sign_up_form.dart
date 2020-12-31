@@ -68,11 +68,11 @@ class _SignUpFormState extends State<SignUpForm> {
       obscureText: true,
       onSaved: (newValue) => confirmPassword = newValue,
       onChanged: (value) {
+        confirmPassword = value;
+
         if (password == confirmPassword) {
           removeError(error: kMatchPassError);
         }
-
-        confirmPassword = value;
 
         return null;
       },
@@ -103,9 +103,10 @@ class _SignUpFormState extends State<SignUpForm> {
       onChanged: (value) {
         if (value.isNotEmpty) {
           removeError(error: kPassNullError);
-        } else if (value.length >= 8) {
-          // if regex doesn't match with a valid email, add to error's list
-          removeError(error: kPassNullError);
+        }
+
+        if (value.length >= 8) {
+          removeError(error: kShortPassError);
         }
 
         password = value;
@@ -115,16 +116,15 @@ class _SignUpFormState extends State<SignUpForm> {
       validator: (value) {
         if (value.isEmpty) {
           addError(error: kPassNullError);
-          return "";
         } else if (value.length < 8) {
           // if regex doesn't match with a valid email, add to error's list
-          addError(error: kPassNullError);
-          return "";
+          addError(error: kShortPassError);
         }
 
         return null;
       },
       decoration: InputDecoration(
+        // contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
         labelText: "Password",
         hintText: "Enter your password",
         suffixIcon: CustomSuffixIcon(
@@ -152,11 +152,9 @@ class _SignUpFormState extends State<SignUpForm> {
         if (value.isEmpty) {
           // update state and add error to the list of errors if such error is not in the list yet
           addError(error: kEmailNullError);
-          return "";
         } else if (!emailValidatorRegExp.hasMatch(value)) {
           // if regex doesn't match with a valid email, add to error's list
           addError(error: kEmailNullError);
-          return "";
         }
 
         return null;

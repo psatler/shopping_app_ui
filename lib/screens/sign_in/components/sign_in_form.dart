@@ -46,9 +46,9 @@ class _SignInFormState extends State<SignInForm> {
           buildEmailFormField(),
           SizedBox(height: getProportionateScreenHeight(30)),
           buildPasswordFormField(),
-          SizedBox(height: getProportionateScreenHeight(30)),
+          // SizedBox(height: getProportionateScreenHeight(30)),
           FormError(errors: errors),
-          SizedBox(height: getProportionateScreenHeight(30)),
+          // SizedBox(height: getProportionateScreenHeight(30)),
           Row(
             children: [
               Checkbox(
@@ -145,11 +145,9 @@ class _SignInFormState extends State<SignInForm> {
         if (value.isEmpty) {
           // update state and add error to the list of errors if such error is not in the list yet
           addError(error: kEmailNullError);
-          return "";
         } else if (!emailValidatorRegExp.hasMatch(value)) {
           // if regex doesn't match with a valid email, add to error's list
           addError(error: kEmailNullError);
-          return "";
         }
 
         return null;
