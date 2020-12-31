@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:shopping_app/screens/complete_profile/complete_profile_screen.dart';
 
 import '../../../components/default_button.dart';
 import '../../../components/form_error.dart';
 import '../../../size_config.dart';
 import '../../../components/custom_suffix_icon.dart';
 import '../../../constants.dart';
+
+// fixing error styles height
+// removing error height: https://stackoverflow.com/questions/56426262/how-to-remove-error-message-in-textformfield-in-flutter/60208333#60208333
+// adding helperText: https://github.com/flutter/flutter/issues/15400#issuecomment-475773473
 
 class SignUpForm extends StatefulWidget {
   @override
@@ -54,7 +59,7 @@ class _SignUpFormState extends State<SignUpForm> {
             press: () {
               if (_formKey.currentState.validate()) {
                 // go to complete profile page
-
+                Navigator.pushNamed(context, CompleteProfileScreen.routeName);
               }
             },
           ),
@@ -77,9 +82,7 @@ class _SignUpFormState extends State<SignUpForm> {
         return null;
       },
       validator: (value) {
-        if (value.isEmpty) {
-          return "";
-        } else if (confirmPassword != password) {
+        if (confirmPassword != password) {
           addError(error: kMatchPassError);
           return "";
         }
@@ -92,6 +95,8 @@ class _SignUpFormState extends State<SignUpForm> {
         suffixIcon: CustomSuffixIcon(
           svgIcon: "assets/icons/Lock.svg",
         ),
+        // helperText: " ",
+        errorStyle: TextStyle(height: 0),
       ),
     );
   }
@@ -116,9 +121,11 @@ class _SignUpFormState extends State<SignUpForm> {
       validator: (value) {
         if (value.isEmpty) {
           addError(error: kPassNullError);
+          return "";
         } else if (value.length < 8) {
           // if regex doesn't match with a valid email, add to error's list
           addError(error: kShortPassError);
+          return "";
         }
 
         return null;
@@ -130,6 +137,8 @@ class _SignUpFormState extends State<SignUpForm> {
         suffixIcon: CustomSuffixIcon(
           svgIcon: "assets/icons/Lock.svg",
         ),
+        // helperText: " ",
+        errorStyle: TextStyle(height: 0),
       ),
     );
   }
@@ -152,9 +161,11 @@ class _SignUpFormState extends State<SignUpForm> {
         if (value.isEmpty) {
           // update state and add error to the list of errors if such error is not in the list yet
           addError(error: kEmailNullError);
+          return "";
         } else if (!emailValidatorRegExp.hasMatch(value)) {
           // if regex doesn't match with a valid email, add to error's list
           addError(error: kEmailNullError);
+          return "";
         }
 
         return null;
@@ -167,6 +178,8 @@ class _SignUpFormState extends State<SignUpForm> {
         suffixIcon: CustomSuffixIcon(
           svgIcon: "assets/icons/Mail.svg",
         ),
+        // helperText: " ",
+        errorStyle: TextStyle(height: 0),
       ),
     );
   }

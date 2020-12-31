@@ -123,6 +123,7 @@ class _SignInFormState extends State<SignInForm> {
         suffixIcon: CustomSuffixIcon(
           svgIcon: "assets/icons/Lock.svg",
         ),
+        errorStyle: TextStyle(height: 0),
       ),
     );
   }
@@ -145,9 +146,11 @@ class _SignInFormState extends State<SignInForm> {
         if (value.isEmpty) {
           // update state and add error to the list of errors if such error is not in the list yet
           addError(error: kEmailNullError);
+          return "";
         } else if (!emailValidatorRegExp.hasMatch(value)) {
           // if regex doesn't match with a valid email, add to error's list
           addError(error: kEmailNullError);
+          return "";
         }
 
         return null;
@@ -160,6 +163,7 @@ class _SignInFormState extends State<SignInForm> {
         suffixIcon: CustomSuffixIcon(
           svgIcon: "assets/icons/Mail.svg",
         ),
+        errorStyle: TextStyle(height: 0),
       ),
     );
   }
