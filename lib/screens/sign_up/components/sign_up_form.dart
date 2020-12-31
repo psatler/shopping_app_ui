@@ -82,7 +82,8 @@ class _SignUpFormState extends State<SignUpForm> {
         return null;
       },
       validator: (value) {
-        if (confirmPassword != password) {
+        // if (confirmPassword != password) {
+        if (value != password) {
           addError(error: kMatchPassError);
           return "";
         }

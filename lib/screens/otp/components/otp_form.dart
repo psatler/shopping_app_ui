@@ -5,8 +5,9 @@ import '../../../components/default_button.dart';
 import '../../../constants.dart';
 import '../../../size_config.dart';
 
-// issue with backspace of keyboard: https://github.com/flutter/flutter/issues/14809
+// issue with backspace of keyboard: https://github.com/flutter/flutter/issues/14809 and https://github.com/prestigegodson/pin-entry-text-field/blob/master/pin_entry_text_field/lib/pin_entry_text_field.dart
 // a package that could so this: https://pub.dev/packages/pin_code_text_field
+// another package: https://pub.dev/packages/pinput
 // and perhaps changing the textfield value: https://stackoverflow.com/questions/51127241/how-do-you-change-the-value-inside-of-a-textfield-flutter
 
 class OtpForm extends StatefulWidget {
