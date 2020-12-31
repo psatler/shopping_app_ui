@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../size_config.dart';
+import 'discount_banner.dart';
 import 'home_header.dart';
 
 class Body extends StatelessWidget {
@@ -10,10 +11,10 @@ class Body extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(
-              height: getProportionateScreenWidth(20),
-            ),
+            SizedBox(height: getProportionateScreenWidth(20)),
             HomeHeader(),
+            SizedBox(height: getProportionateScreenWidth(20)),
+            DiscountBanner(),
           ],
         ),
       ),
