@@ -5,6 +5,7 @@ import '../../../components/custom_suffix_icon.dart';
 import '../../../components/form_error.dart';
 import '../../../constants.dart';
 import '../../../size_config.dart';
+import '../../../screens/otp/otp_screen.dart';
 
 class CompleteProfileForm extends StatefulWidget {
   @override
@@ -57,6 +58,7 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
             press: () {
               if (_formKey.currentState.validate()) {
                 // go to OTP (one time password) screen
+                Navigator.pushNamed(context, OtpScreen.routeName);
               }
             },
           ),
@@ -72,6 +74,7 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
 
   TextFormField buildAddressFormField() {
     return TextFormField(
+      textCapitalization: TextCapitalization.sentences,
       onSaved: (newValue) => address = newValue,
       onChanged: (value) {
         if (value.isNotEmpty) {
@@ -139,6 +142,7 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
 
   TextFormField buildLastNameFormField() {
     return TextFormField(
+      textCapitalization: TextCapitalization.sentences,
       onSaved: (newValue) => lastName = newValue,
       onChanged: (value) {
         if (value.isNotEmpty) {
@@ -172,6 +176,8 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
 
   TextFormField buildFirstNameFormField() {
     return TextFormField(
+      // keyboardType: TextInputType.text,
+      textCapitalization: TextCapitalization.sentences,
       onSaved: (newValue) => firstName = newValue,
       onChanged: (value) {
         if (value.isNotEmpty) {

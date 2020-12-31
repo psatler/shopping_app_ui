@@ -36,3 +36,18 @@ const String kNamelNullError = "Please enter your name";
 const String kLastNamelNullError = "Please enter your last name";
 const String kPhoneNumberNullError = "Please enter your phone number";
 const String kAddressNullError = "Please enter your address";
+
+final otpInputDecoration = InputDecoration(
+  contentPadding:
+      EdgeInsets.symmetric(vertical: getProportionateScreenWidth(15)),
+  enabledBorder: _outlineInputBorder(),
+  focusedBorder: _outlineInputBorder(),
+  border: _outlineInputBorder(),
+);
+
+OutlineInputBorder _outlineInputBorder() {
+  return OutlineInputBorder(
+    borderRadius: BorderRadius.circular(getProportionateScreenWidth(15)),
+    borderSide: BorderSide(color: kTextColor),
+  );
+}
