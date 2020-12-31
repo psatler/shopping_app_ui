@@ -1,24 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:shopping_app/screens/login_success/login_success_screen.dart';
 
-import '../../../screens/forgot_password/forgot_password_screen.dart';
-import '../../../constants.dart';
-import '../../../size_config.dart';
-import '../../../components/form_error.dart';
-import '../../../components/custom_suffix_icon.dart';
 import '../../../components/default_button.dart';
+import '../../../components/form_error.dart';
+import '../../../size_config.dart';
+import '../../../components/custom_suffix_icon.dart';
+import '../../../constants.dart';
 
-class SignInForm extends StatefulWidget {
+class SignUpForm extends StatefulWidget {
   @override
-  _SignInFormState createState() => _SignInFormState();
+  _SignUpFormState createState() => _SignUpFormState();
 }
 
-class _SignInFormState extends State<SignInForm> {
+class _SignUpFormState extends State<SignUpForm> {
+  final _formKey = GlobalKey<FormState>();
+
   String email;
   String password;
-  bool remember = false;
+  String confirmPassword;
 
-  final _formKey = GlobalKey<FormState>();
   final List<String> errors = [];
 
   void addError({String error}) {
@@ -43,46 +42,19 @@ class _SignInFormState extends State<SignInForm> {
       key: _formKey,
       child: Column(
         children: [
-          buildEmailFormField(),
+          buildEmailField(),
           SizedBox(height: getProportionateScreenHeight(30)),
-          buildPasswordFormField(),
+          buildPasswordField(),
           SizedBox(height: getProportionateScreenHeight(30)),
+          buildConfirmPasswordField(),
           FormError(errors: errors),
-          SizedBox(height: getProportionateScreenHeight(30)),
-          Row(
-            children: [
-              Checkbox(
-                value: remember,
-                activeColor: kPrimaryColor,
-                onChanged: (value) {
-                  setState(() {
-                    remember = value;
-                  });
-                },
-              ),
-              Text("Remember me"),
-              Spacer(),
-              GestureDetector(
-                onTap: () => Navigator.pushNamed(
-                    context, ForgotPasswordScreen.routeName),
-                child: Text(
-                  "Forgot password",
-                  style: TextStyle(decoration: TextDecoration.underline),
-                ),
-              ),
-            ],
-          ),
-          SizedBox(height: getProportionateScreenHeight(30)),
+          SizedBox(height: getProportionateScreenHeight(40)),
           DefaultButton(
             text: "Continue",
             press: () {
-              // TODO: form is not validation after pressing continue two times in a row without filling out textfields with text
-
               if (_formKey.currentState.validate()) {
-                _formKey.currentState.save();
+                // go to complete profile page
 
-                // if all are valid, then go to the success screen
-                Navigator.pushNamed(context, LoginSuccessScreen.routeName);
               }
             },
           ),
@@ -91,7 +63,40 @@ class _SignInFormState extends State<SignInForm> {
     );
   }
 
-  TextFormField buildPasswordFormField() {
+  TextFormField buildConfirmPasswordField() {
+    return TextFormField(
+      obscureText: true,
+      onSaved: (newValue) => confirmPassword = newValue,
+      onChanged: (value) {
+        if (password == confirmPassword) {
+          removeError(error: kMatchPassError);
+        }
+
+        confirmPassword = value;
+
+        return null;
+      },
+      validator: (value) {
+        if (value.isEmpty) {
+          return "";
+        } else if (confirmPassword != password) {
+          addError(error: kMatchPassError);
+          return "";
+        }
+
+        return null;
+      },
+      decoration: InputDecoration(
+        labelText: "Confirm Password",
+        hintText: "Re-enter your password",
+        suffixIcon: CustomSuffixIcon(
+          svgIcon: "assets/icons/Lock.svg",
+        ),
+      ),
+    );
+  }
+
+  TextFormField buildPasswordField() {
     return TextFormField(
       obscureText: true,
       onSaved: (newValue) => password = newValue,
@@ -102,6 +107,8 @@ class _SignInFormState extends State<SignInForm> {
           // if regex doesn't match with a valid email, add to error's list
           removeError(error: kPassNullError);
         }
+
+        password = value;
 
         return null;
       },
@@ -127,7 +134,7 @@ class _SignInFormState extends State<SignInForm> {
     );
   }
 
-  TextFormField buildEmailFormField() {
+  TextFormField buildEmailField() {
     return TextFormField(
       keyboardType: TextInputType.emailAddress,
       onSaved: (newValue) => email = newValue,
