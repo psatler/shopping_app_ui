@@ -4,6 +4,7 @@ import '../../../size_config.dart';
 import 'categories.dart';
 import 'discount_banner.dart';
 import 'home_header.dart';
+import 'section_title.dart';
 
 class Body extends StatelessWidget {
   @override
@@ -14,10 +15,15 @@ class Body extends StatelessWidget {
           children: [
             SizedBox(height: getProportionateScreenWidth(20)),
             HomeHeader(),
-            SizedBox(height: getProportionateScreenWidth(20)),
+            SizedBox(height: getProportionateScreenWidth(30)),
             DiscountBanner(),
-            SizedBox(height: getProportionateScreenWidth(20)),
+            SizedBox(height: getProportionateScreenWidth(30)),
             Categories(),
+            SizedBox(height: getProportionateScreenWidth(30)),
+            SectionTitle(
+              text: "Special Offer",
+              press: () {},
+            ),
           ],
         ),
       ),
