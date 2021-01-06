@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shopping_app/screens/details/details_screen.dart';
 
 import '../../../models/Product.dart';
 import '../../../components/product_card.dart';
@@ -34,6 +35,9 @@ class PopularProducts extends StatelessWidget {
                   // if is the last product, we don't add a space at the right side
                   return ProductCard(
                     product: product,
+                    press: () => Navigator.pushNamed(
+                        context, DetailsScreen.routeName,
+                        arguments: ProductDetailsArguments(product: product)),
                   );
                 }
 
@@ -41,6 +45,9 @@ class PopularProducts extends StatelessWidget {
                   children: [
                     ProductCard(
                       product: product,
+                      press: () => Navigator.pushNamed(
+                          context, DetailsScreen.routeName,
+                          arguments: ProductDetailsArguments(product: product)),
                     ),
                     SizedBox(width: getProportionateScreenWidth(20)),
                   ],
