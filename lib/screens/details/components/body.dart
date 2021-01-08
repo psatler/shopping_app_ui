@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shopping_app/components/default_button.dart';
+import 'package:shopping_app/size_config.dart';
 
 import '../../../models/Product.dart';
 import 'colors_dot.dart';
@@ -16,29 +18,46 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        Column(
-          children: [
-            ProductImages(product: product),
-            TopRoundedContainer(
-              color: Colors.white,
-              widget: Column(
-                children: [
-                  ProductDescription(
-                    product: product,
-                    pressOnSeeMore: () {},
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          ProductImages(product: product),
+          TopRoundedContainer(
+            color: Colors.white,
+            widget: Column(
+              children: [
+                ProductDescription(
+                  product: product,
+                  pressOnSeeMore: () {},
+                ),
+                TopRoundedContainer(
+                  color: Color(0xFFF6F7F9),
+                  widget: Column(
+                    children: [
+                      ColorDots(product: product),
+                      TopRoundedContainer(
+                        color: Colors.white,
+                        widget: Padding(
+                          padding: EdgeInsets.only(
+                            left: SizeConfig.screenWidth * 0.15,
+                            right: SizeConfig.screenWidth * 0.15,
+                            top: getProportionateScreenWidth(15),
+                            bottom: getProportionateScreenWidth(40),
+                          ),
+                          child: DefaultButton(
+                            text: "Add to Cart",
+                            press: () {},
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                  TopRoundedContainer(
-                    color: Color(0xFFF6F7F9),
-                    widget: ColorDots(product: product),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
-        ),
-      ],
+          ),
+        ],
+      ),
     );
   }
 }

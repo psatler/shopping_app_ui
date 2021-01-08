@@ -26,7 +26,7 @@ class _ProductImagesState extends State<ProductImages> {
         SizedBox(
           width: getProportionateScreenWidth(238),
           child: AspectRatio(
-            aspectRatio: 1,
+            aspectRatio: 1.5,
             child: Image.asset(widget.product.images[_selectedImage]),
           ),
         ),
