@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../models/Product.dart';
 import 'components/custom_app_bar.dart';
+import 'components/body.dart';
 
 class DetailsScreen extends StatelessWidget {
   static String routeName = "/details";
@@ -15,6 +16,9 @@ class DetailsScreen extends StatelessWidget {
       backgroundColor: Color(0xFFF5F6F9), // another shade of white/greyish
       appBar: CustomAppBar(
         rating: arguments.product.rating,
+      ),
+      body: Body(
+        product: arguments.product,
       ),
     );
   }
