@@ -1,12 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:shopping_app/models/Product.dart';
+
+import '../../models/Product.dart';
+import '../../components/rounded_icon_button.dart';
 
 class DetailsScreen extends StatelessWidget {
   static String routeName = "/details";
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      backgroundColor: Color(0xFFF5F6F9),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        leading: RoundedIconButton(
+          iconData: Icons.arrow_back,
+          press: () => Navigator.pop(context),
+        ),
+      ),
+    );
   }
 }
 
