@@ -9,6 +9,7 @@ import './screens/complete_profile/complete_profile_screen.dart';
 import './screens/otp/otp_screen.dart';
 import './screens/home/home_screen.dart';
 import './screens/details/details_screen.dart';
+import './screens/cart/cart_screen.dart';
 
 final Map<String, WidgetBuilder> routes = {
   SplashScreen.routeName: (context) => SplashScreen(),
@@ -20,4 +21,5 @@ final Map<String, WidgetBuilder> routes = {
   OtpScreen.routeName: (context) => OtpScreen(),
   HomeScreen.routeName: (context) => HomeScreen(),
   DetailsScreen.routeName: (context) => DetailsScreen(),
+  CartScreen.routeName: (context) => CartScreen(),
 };
