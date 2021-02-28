@@ -25,7 +25,7 @@ class DiscountBanner extends StatelessWidget {
       ),
       child: Text.rich(
         TextSpan(
-          text: "A Summer Suprise\n",
+          text: "A Summer Surprise\n",
           style: TextStyle(
             color: Colors.white,
           ),
