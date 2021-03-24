@@ -1,4 +1,5 @@
 <p align="center">
+  
   <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/psatler/shopping_app_ui.svg">
 
   <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/psatler/shopping_app_ui.svg">
